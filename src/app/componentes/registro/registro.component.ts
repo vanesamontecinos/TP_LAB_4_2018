@@ -5,6 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { LoginService } from '../../servicios/servicios/login.service';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
@@ -26,7 +27,7 @@ resolvedCaptcha(result) {
 seguardo: boolean=false;
 
 
-  constructor(private route: ActivatedRoute,public servicio: LoginService, 
+  constructor(private route: ActivatedRoute,public servicio: LoginService, private spinner:NgxSpinnerService,
     private router: Router, formBuilder: FormBuilder) { 
     this.form = formBuilder.group({
       nombre: [null, Validators.compose([Validators.maxLength(50), Validators.required])],
@@ -42,7 +43,17 @@ seguardo: boolean=false;
   }
 
   ngOnInit() {
+    this.spinner.show();
+    
+       setTimeout(() => {
+           /** spinner ends after 5 seconds */
+           this.spinner.hide();
+           console.log('dentrospiner');
+       }, 5000);
+
+
   }
+
 
     guardar(){ 
       this.mensajeOKFormAlta='';
@@ -80,7 +91,7 @@ seguardo: boolean=false;
     formData.append('nombre', this.form.value.nombre);
     formData.append('email', this.form.value.mail);
     formData.append('clave', this.form.value.clave);
-    formData.append('tipo', this.form.value.tipo);
+    formData.append('tipo', 'CLIENTE');
     formData.append('estado', 'HABILITADO');
     //formData.append('foto', './assets/fotos/fotos/imagen1.jpg');
     console.log(this.form.value.nombre);

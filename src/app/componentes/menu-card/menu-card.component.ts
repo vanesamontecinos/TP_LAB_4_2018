@@ -95,6 +95,9 @@ nada(){}
         case 'AltaViaje':
         this.router.navigate(['/Principal/AltaViaje']);
       break;
+      case 'ListadoUsuarios':
+      this.router.navigate(['/Principal/ListadoUsuarios']);
+      break;
       case 'Informes':
       this.router.navigate(['/Principal/Informes']);
     break;

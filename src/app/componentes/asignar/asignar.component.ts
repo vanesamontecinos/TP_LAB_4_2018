@@ -7,7 +7,7 @@ import { Component, NgModule, NgZone, OnInit, ViewChild, ElementRef, Directive, 
 import { Viaje } from '../../clases/viaje';
 import { BrowserModule } from "@angular/platform-browser";
 import { LoginService } from '../../servicios/servicios/login.service';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-asignar',
@@ -46,7 +46,8 @@ Remiseros:any;
   resultadoBusqueda: string;
   seguardo: boolean=false;
 
-  constructor( private auth: AutService,
+  constructor( private auth: AutService,private spinner:NgxSpinnerService,
+    
      public servicio:LoginService,public servicioViajes:ViajeService,formBuilder: FormBuilder) { 
        this.listarServicios();
        this.listarRemiseros();
@@ -59,6 +60,16 @@ Remiseros:any;
      }
 
   ngOnInit() {
+    this.spinner.show();
+    
+       setTimeout(() => {
+           /** spinner ends after 5 seconds */
+           this.spinner.hide();
+           console.log('dentrospiner');
+       }, 5000);
+
+
+
   }
 
   listarServicios(){

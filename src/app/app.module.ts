@@ -70,6 +70,7 @@ import { HabilitadoPipe } from './pipes/habilitado.pipe';
 import { VerencuestasComponent } from './componentes/verencuestas/verencuestas.component';
 import { EncuestaPipe } from './pipes/encuesta.pipe';
 import { ResaltarDirective } from './directivas/resaltar.directive';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 @NgModule({
@@ -101,7 +102,7 @@ import { ResaltarDirective } from './directivas/resaltar.directive';
     FileUploadModule,
     FileDropModule,
     NgxChartsModule,
-    
+    NgxSpinnerModule,
     ChartsModule,
     RecaptchaModule.forRoot(),
     AgmCoreModule.forRoot({

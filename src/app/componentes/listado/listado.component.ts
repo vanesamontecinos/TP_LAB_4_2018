@@ -8,22 +8,21 @@ import { AgmCoreModule, MapsAPILoader, GoogleMapsAPIWrapper  } from '@agm/core';
 import { Viaje } from '../../clases/viaje';
 
 import {} from '@types/googlemaps';
+import { NgxSpinnerService } from 'ngx-spinner';
+
 
 declare var google:any;
 declare var jQuery:any;
 
-import {} from 'googlemaps';
 
 import { BrowserModule } from "@angular/platform-browser";
 //import { AgmCoreModule, MapsAPILoader, GoogleMapsAPIWrapper } from 'angular2-google-maps/core';
 import { DirectionsMapDirective } from '../../directivas/googlr-map.directive';
-import {} from '@types/googlemaps';
+
 
 import { Component, NgModule, NgZone, OnInit, ViewChild, ElementRef, Directive, Input ,ChangeDetectorRef} from '@angular/core';
 
 import { Router } from '@angular/router';
-
-
 
 
 @Component({
@@ -41,6 +40,10 @@ mostrarForm:boolean;
   form : FormGroup;
   id: number;
   mostrarEncuesta:boolean;
+  tiempo:any;
+  distanciakm:any;
+  calculado:boolean;
+  costoCalculado:any;
 
   public lat: Number;
   public lng: Number;
@@ -68,6 +71,7 @@ public mapCustomStyles : any;
 public estimatedTime: any;
 public estimatedDistance: any;
 coordenadas:any;
+
 
 origen: google.maps.LatLng;
 destino: google.maps.LatLng;
@@ -118,8 +122,8 @@ public drivingOptions: any = {
 }
 
 
-  constructor( private auth: AutService,
-    
+  constructor( private auth: AutService,private spinner:NgxSpinnerService,
+  
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone, public servicio:ViajeService,formBuilder: FormBuilder) {
     this.usuarioLogueado=this.auth.getToken();
@@ -207,7 +211,20 @@ public seleccion:any;
   this.destination = { lat:this.latitudHasta, lng: this.longitudHasta }
  this.direccionDesde=algo.origen;
  this.direccionHasta=algo.destino;
+ this.calculateDistance();
 
+  }
+
+
+  calculateDistance() {
+    var nyc = new google.maps.LatLng(this.latitudDesde,this.longitudDesde);
+    var london = new google.maps.LatLng(this.latitudHasta, this.longitudHasta);
+    var distance = google.maps.geometry.spherical.computeDistanceBetween(nyc, london);
+    this.distanciakm=(google.maps.geometry.spherical.computeDistanceBetween(nyc, london)/ 1000).toFixed(2);
+    console.log(distance);
+    console.log('km'+this.distanciakm);
+    this.costoCalculado=this.distanciakm*30;
+    this.tiempo=(this.distanciakm*6).toFixed(0);
   }
   listarServicios(){
     this.servicio.ObtenerTodos()
@@ -338,6 +355,15 @@ this.mostrarForm=false;
 
 
   ngOnInit() {
+    this.spinner.show();
+    
+       setTimeout(() => {
+           /** spinner ends after 5 seconds */
+           this.spinner.hide();
+           console.log('dentrospiner');
+       }, 5000);
+
+
     this.listarServicios();}
     comienzo(){
     this.zoom = 4;

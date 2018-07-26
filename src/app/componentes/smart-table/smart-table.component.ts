@@ -11,6 +11,7 @@ import { Usuario } from '../../clases/usuario';
 import { AutService } from '../../servicios/servicios/aut.service';
 import { Ng2SmartTableModule,LocalDataSource } from 'ng2-smart-table';
 
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 class TableColumn {
@@ -62,7 +63,7 @@ mostrarSmarTable:boolean;
   private usuarios:Array<any> = [];
 
 
-  constructor(public miServicio: ViajeService, public formBuilder: FormBuilder,
+  constructor(public miServicio: ViajeService, public formBuilder: FormBuilder,private spinner:NgxSpinnerService,
     private auth: AutService) { 
       this.usuarioLogueado=this.auth.getToken();
       console.log(this.usuarioLogueado.data.clave);
@@ -74,6 +75,14 @@ mostrarSmarTable:boolean;
     }
 
   ngOnInit() {
+    this.spinner.show();
+    
+       setTimeout(() => {
+           /** spinner ends after 5 seconds */
+           this.spinner.hide();
+           console.log('dentrospiner');
+       }, 5000);
+
    // this.settings = _.merge(this.defaultSettings, this.settings);
   }
 

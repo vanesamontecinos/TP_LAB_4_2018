@@ -1,9 +1,14 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)"
+size="medium"
+color="#fff"
+loadingText="Cargando..."
+type="ball-scale-multiple"></ngx-spinner>
 <div *ngIf='!verDetalle'>
 <h2>ENCUESTAS</h2>
 <table class="table table-condensed" >
     <thead>
       <tr>
-          <th>Cliente</th>
+          <th>Nº Viaje</th>
         <th>Trato del Remisero</th>
         <th>Se cumplio el horario</th>
         <th>Que le parecio la plataforma</th>
@@ -14,7 +19,7 @@
     </thead>
     <tbody *ngFor="let algo of encuestas" >
       <tr  >
-          <td>{{algo.cliente}} </td>
+          <td>{{algo.viaje}} </td>
           <td>{{algo.trato | encuesta}} </td>
         <td>{{algo.horarioCumplido}} </td>
         <td>{{algo.plataforma | encuesta}} </td> 
@@ -51,7 +56,7 @@
 
   <img class="img-thumbnail"   src="{{foto1}}" alt="Avatar" style="width:250px">
   <img class="img-thumbnail"   src="{{foto2}}" alt="Avatar" style="width:250px">
-  <img class="img-thumbnail"   src="{{foto3}}" alt="Avatar" style="width:250spx">
+  <img class="img-thumbnail"   src="{{foto3}}" alt="Avatar" style="width:250px">
   <p> <button  type="button" class="btn btn-info" (click)="volver()">Volver</button></p>
   
 </div>

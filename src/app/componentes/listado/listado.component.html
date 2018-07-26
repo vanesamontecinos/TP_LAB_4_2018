@@ -1,6 +1,12 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)"
+size="medium"
+color="#fff"
+loadingText="Cargando..."
+type="ball-scale-multiple"></ngx-spinner>
 <table class="table table-condensed" *ngIf="!mostrarForm && !mostrarEncuesta && !mostrarRuta">
     <thead>
       <tr>
+          <th>Nº</th>
           <th>Cliente</th>
         <th>Origen</th>
         <th>Destino</th>
@@ -15,6 +21,7 @@
     </thead>
     <tbody *ngFor="let algo of listado">
       <tr *ngIf='algo.cliente==this.nombreUsuario' >
+          <td>{{algo.id}} </td>
           <td>{{algo.cliente}} </td>
         <td>{{algo.origen}} </td>
         <td>{{algo.destino}} </td> 
@@ -59,7 +66,7 @@
   
       <div class="form-group">
           <label for="hora">Hora</label>
-          <input type="text" formControlName="hora"  [(ngModel)]="unViaje.hora" >
+          <input type="time" formControlName="hora"  [(ngModel)]="unViaje.hora" >
   
             
           </div>
@@ -95,6 +102,10 @@
   <div *ngIf="mostrarRuta">
     <h4> Origen:{{this.direccionDesde}} </h4>
     <h4> Destino:{{this.direccionHasta}} </h4>
+    <p appResaltar >Distancia: {{this.distanciakm}} km</p>
+    <p appResaltar >Costo Aproximado: ${{this.costoCalculado}} </p>
+    <p appResaltar >Tiempo Aproximado: {{this.tiempo}} minutos</p>
+    
     <button type="button" class="btn btn-default" (click)="volver()">Volver</button>
   <agm-map [latitude]="lat" [longitude]="lng">
     <agm-direction [origin]="origin" [destination]="destination" >

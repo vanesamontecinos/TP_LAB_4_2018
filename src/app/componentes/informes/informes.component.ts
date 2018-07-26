@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../servicios/servicios/login.service';
 import { ViajeService } from '../../servicios/servicios/viaje.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-informes',
   templateUrl: './informes.component.html',
@@ -153,25 +154,24 @@ export class InformesComponent implements OnInit {
   encargado: boolean;
   otros:boolean;
   listo: boolean;
-  constructor( private PersonaS: LoginService, private viaje:ViajeService) { 
-
+  constructor( private PersonaS: LoginService, private viaje:ViajeService,private spinner:NgxSpinnerService) { 
+    this.spinner.show();
+    
+       setTimeout(() => {
+           /** spinner ends after 5 seconds */
+           this.spinner.hide();
+       }, 5000);
+   
   }
 
   ngOnInit() {  
-      this.listo = false;
-     // this.buscarRol();
-      
-          if(!this.listo){
-              
-            //  this.spinner.show();
-              
-              setTimeout(() => {
-              
-             //  this.spinner.hide(); 
-               this.listo = false;
-          }, 8000);
-      
-          }
+    this.spinner.show();
+    
+       setTimeout(() => {
+           /** spinner ends after 5 seconds */
+           this.spinner.hide();
+           console.log('dentrospiner');
+       }, 5000);
   }
 
   totalClientes(){

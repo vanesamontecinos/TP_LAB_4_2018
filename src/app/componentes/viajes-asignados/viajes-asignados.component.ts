@@ -7,7 +7,7 @@ import { Component, NgModule, NgZone, OnInit, ViewChild, ElementRef, Directive, 
 import { Viaje } from '../../clases/viaje';
 import { BrowserModule } from "@angular/platform-browser";
 import { LoginService } from '../../servicios/servicios/login.service';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-viajes-asignados',
@@ -27,7 +27,7 @@ export class ViajesAsignadosComponent implements OnInit {
       form : FormGroup;
       id: number;
       mostrarTabla:boolean;
-      constructor( private auth: AutService,
+      constructor( private auth: AutService,private spinner:NgxSpinnerService,
         public servicio:LoginService,public servicioViajes:ViajeService,formBuilder: FormBuilder) { 
           this.listarServicios();
          
@@ -48,6 +48,15 @@ export class ViajesAsignadosComponent implements OnInit {
         }
 
   ngOnInit() {
+    this.spinner.show();
+    
+       setTimeout(() => {
+           /** spinner ends after 5 seconds */
+           this.spinner.hide();
+           console.log('dentrospiner');
+       }, 5000);
+
+
   }
   listarServicios(){
     this.servicioViajes.ObtenerTodos()

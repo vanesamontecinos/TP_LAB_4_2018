@@ -14,25 +14,43 @@
       <p>   <button class="button fuenteBoton"  (click)="Principal('AltaViaje')">Reservar</button></p>
     
     </div>
-    <div *ngIf="this.encargado" class="card ">
-        <img class="img-thumbnail"   src="/assets/imagenes/444.gif" alt="Avatar" style="width:100%">
-        <h1 class="cursiva" >Todos los Viajes </h1>
-        <p class="title">Listado de todos los viajes realizados, cancelados y solicitados</p>
+
+    <div *ngIf="this.cliente" class="card ">
+        <img class="img-thumbnail"   src="/assets/imagenes/disfrutaste.jpg" alt="Avatar" style="width:100%">
+        <h1 class="cursiva" >Mis viajes </h1>
+        <p class="title">Gracias por Elegirnos</p>
         
     
         
-        <p>   <button class="button fuenteBoton"  (click)="Principal('ListadoViajes')">Ver Viajes</button></p>
+        <p>   <button class="button fuenteBoton"  (click)="Principal('Listado')">Ingresar</button></p>
       
       </div>
+    <div *ngIf="this.encargado" class="card ">
+        <img class="img-thumbnail"   src="/assets/imagenes/lista.gif" alt="Avatar" style="width:100%">
+        <h1 class="cursiva" >Todos los Viajes </h1>
+        <p class="title">Listado de todos los viajes realizados, cancelados y solicitados</p>
+        <p>   <button class="button fuenteBoton"  (click)="Principal('ListadoViajes')">Ver Viajes</button></p>
+      </div>
+
+      <div *ngIf="this.encargado" class="card ">
+          <img class="img-thumbnail"   src="/assets/imagenes/informes.gif" alt="Avatar" style="width:100%">
+          <h1 class="cursiva" >Estadisticas</h1>
+          <p class="title">Graficos de viajes realizados, cancelados y solicitados. Encuestas. etc</p>
+          <p>   <button class="button fuenteBoton"  (click)="Principal('Informes')">Ver Graficos</button></p>
+        </div>
+        <div *ngIf="this.encargado" class="card ">
+            <img class="img-thumbnail"   src="/assets/imagenes/cabecera.gif" alt="Avatar" style="width:100%">
+            <h1 class="cursiva" >Empleados y vehiculos</h1>
+            <p class="title">Listado de empleados y vehiculos</p>
+            <p>   <button class="button fuenteBoton"  (click)="Principal('ListadoUsuarios')">Ver listado</button></p>
+          </div>
+
+
       <div *ngIf="this.remisero" class="card ">
-          <img class="img-thumbnail"   src="/assets/imagenes/444.gif" alt="Avatar" style="width:100%">
+          <img class="img-thumbnail"   src="/assets/imagenes/misviajes.jpg" alt="Avatar" style="width:100%">
           <h1 class="cursiva" >Viajes Asignados </h1>
           <p class="title">Listado de todos los viajes asignados al usuario</p>
-          
-      
-          
-          <p>   <button class="button fuenteBoton"  (click)="Principal('ViajesAsignados')">Ver Viajes</button></p>
-        
+                <p>   <button class="button fuenteBoton"  (click)="Principal('ViajesAsignados')">Ver Viajes</button></p>       
         </div>
   
     <!--div class="card">

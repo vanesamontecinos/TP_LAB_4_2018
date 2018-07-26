@@ -8,11 +8,12 @@
 
   <div class="form-group">
     <label>Email:</label>
-    <input type="text" class="form-control" formControlName="mail">
+    <input type="email" class="form-control" formControlName="mail">
   </div>
 
 
   <p [ngStyle]="{'color': 'red'}" *ngIf="!form.valid">{{mensajeErrorFormAlta}}</p>
+  
   <button type="button" class="btn btn-default" (click)="guardar()">Guardar</button>
   <button type="button" class="btn btn-default" (click)="volver()">Volver</button>
   <p [ngStyle]="{'color': 'grenn'}" *ngIf="seguardo">{{mensajeOKFormAlta}}</p>

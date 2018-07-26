@@ -12,8 +12,8 @@ export class JuegoAgilidad extends Juego{
     resultado:number;
     numeroingresado:number;
 
-    constructor(nombre?: string, gano?: boolean,jugador?:string){
-        super(" Agilidad Mental ",gano,jugador);
+    constructor(){
+        super();
     }
 generarNumeros(){
     this.numeroUno =Math.floor( Math.random()*10)+1;

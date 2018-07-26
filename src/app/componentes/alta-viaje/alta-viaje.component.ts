@@ -8,11 +8,11 @@ import {} from '@types/googlemaps';
 import { AutService } from '../../servicios/servicios/aut.service';
 
 import { Component, NgModule, NgZone, OnInit, ViewChild, ElementRef, Directive, Input ,ChangeDetectorRef} from '@angular/core';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
 import { Viaje } from '../../clases/viaje';
 import {} from '@types/googlemaps';
-
+import { JuegoAgilidad } from '../../clases/juego-agilidad'
 declare var google:any;
 declare var jQuery:any;
 
@@ -36,6 +36,8 @@ export class AltaVIajeComponent implements OnInit {
   repetidor:any;
   resultado:number;
   numeroIngresado:number;
+  nuevoJuego : JuegoAgilidad;
+ 
   private origenLat: any;
   private origenLng: any;
   private destinoLat: any;
@@ -97,6 +99,7 @@ origenLatitud:string;
 origenLongitud:string;
 destinoLatitud:string;
 destinoLongitud:string;
+tiempo:any;
 
 origen: google.maps.LatLng;
 destino: google.maps.LatLng;
@@ -109,12 +112,17 @@ nombreUsuario:any;
   public searchElementRef: ElementRef;
 
 
-  constructor(public servicio:ViajeService , formBuilder: FormBuilder,
+  constructor(public servicio:ViajeService , formBuilder: FormBuilder,private spinner:NgxSpinnerService,
      private auth: AutService,private router: Router,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone) { 
      this.calculado=false;
-      
+     this.nuevoJuego = new JuegoAgilidad();
+     this.nuevoJuego.generarNumeros();
+     
+     this.nuevoJuego.gano=false;
+     this.nuevoJuego.perdio=false;
+
    
 
 
@@ -132,6 +140,7 @@ nombreUsuario:any;
       hora: [null, Validators.compose([Validators.maxLength(50),  Validators.required])],
       pago: [null, Validators.compose([Validators.maxLength(50),  Validators.required])],
       tipo: [null, Validators.compose([Validators.maxLength(50),  Validators.required])],
+      resultado: [null, Validators.compose([Validators.maxLength(50),  Validators.required])],
       
 
  
@@ -142,6 +151,15 @@ this.ngOnInit();
   }
 
   ngOnInit() {
+    this.spinner.show();
+    
+       setTimeout(() => {
+           /** spinner ends after 5 seconds */
+           this.spinner.hide();
+           console.log('dentrospiner');
+       }, 5000);
+
+
     this.zoom = 4;
     this.latitude = 39.8282;
     this.longitude = -98.5795;
@@ -264,6 +282,7 @@ this.ngOnInit();
     console.log(distance);
     console.log('km'+this.distanciakm);
     this.costoCalculado=this.distanciakm*30;
+    this.tiempo=(this.distanciakm*6).toFixed(0);
   }
 
   calcular(){
@@ -284,8 +303,11 @@ this.ngOnInit();
    // this.getDistanceAndDuration();
   // this.calculateDistance()
     this.mensajeOKFormAlta='';
-console.log('ssss'+this.estimatedTime+'dis0'+this.estimatedDistance);
-//VERIFICACION DE SABOR
+    this.nuevoJuego.numeroingresado=this.form.value.resultado;
+    if(this.nuevoJuego.verificar()){
+      this.nuevoJuego.gano=true 
+    }
+    if (this.nuevoJuego.gano){
 
 
 if(this.form.valid){
@@ -332,9 +354,15 @@ if(this.form.valid){
   this.form.reset();
   this.dire='';
   this.coordenadas='';
+
+  this.nuevoJuego = new JuegoAgilidad();
+  this.nuevoJuego.generarNumeros();
+  
+  this.nuevoJuego.gano=false;
+  this.nuevoJuego.perdio=false;
 }}
 
-
+  }
 
  
   mySplit(string, nb){
