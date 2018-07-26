@@ -1,0 +1,63 @@
+.panel
+{
+    height: 200px;
+    
+    background-image: url("/assets/imagenes/cabecera.gif");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.fuente{
+    color: #1D1717;
+    font-family: 'Berkshire Swash', cursive;
+}
+
+.hero-text {
+text-align: center;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+/*color: #3E06B0;*/
+color: #1F1B1B;
+}
+
+.hero-text a {
+border: none;
+outline: 0;
+display: inline-block;
+padding: 10px 25px;
+color: #1F1B1B;
+background-color: #ddd;
+text-align: center;
+cursor: pointer;
+}
+
+.hero-text a:hover {
+background-color: #CFC2C2;
+color: #181616;
+}
+.cursiva{
+    color: rgba(255, 255, 255, 0.66);
+    font-family: 'Rye', cursive;;
+  }
+.button{
+  margin-left: 1px;
+  display: inline-block;
+  width: 50%;
+  padding: 5px 15px;
+  font-size: 15px;
+ 
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: rgb(33, 97, 34);
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px rgb(0, 0, 0);
+}
+.b{
+    background-color: rgb(33, 97, 34);
+    border-radius: 15px;
+}

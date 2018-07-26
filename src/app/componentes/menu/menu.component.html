@@ -1,0 +1,71 @@
+<!--div>
+    <button routerLink="/Principal">Principal</button>
+    <button (click)="Juego('Adivina')">Adivina</button>
+    <button (click)="Juego('Agilidad')">Agilidad</button>
+    <button (click)="Juego('AdivinaMasListado')">Adivina+listado</button>
+    <button (click)="Juego('AgilidadaMasListado')">Agilidad+listado</button>  
+    <button routerLink="/error">Error</button>
+  
+</div-->
+
+<!--nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" routerLink="/Principal">Inicio</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a routerLink="/Juegos">Juegos</a></li>
+        <li><a data-toggle="tooltip" title="Hooray!" (click)="Juego('Adivina')">Adivina</a></li>
+        <li><a  (click)="Juego('Agilidad')">Agilidad</a></li>
+        <li><a  (click)="Juego('AdivinaMasListado')">Adivina+listado</a></li>
+        <li><a  (click)="Juego('AgilidadaMasListado')">Agilidad+listado</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Mis Datos</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+        </ul>
+    </div>
+  </nav-->
+  <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">
+  <nav class="navbar navbar-inverse">
+      <div class="container-fluid fuente">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+                                  
+          </button>
+          <!--a class="navbar-brand fuente" routerLink="/Principal">Inicio</a-->
+          <a class="navbar-brand fuente" routerLink="/Principal/Menu">Bienvenido </a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              
+                
+              
+                <li *ngIf="this.cliente"><a   (click)="Principal('AltaViaje')">Reservar viaje</a></li>
+                <li *ngIf="this.cliente"><a   (click)="Principal('Listado')">Mis Viajes</a></li>
+               <li *ngIf="this.encargado"><a   (click)="Principal('Asignar')">Asignar</a></li>
+                
+                <li *ngIf="this.encargado"><a   (click)="Principal('ListadoViajes')">Listado de viajes </a></li>
+                <li *ngIf="this.remisero"><a   (click)="Principal('ViajesAsignados')">Listado de viajes Asignados </a></li>
+                
+                <li *ngIf="this.encargado"><a   (click)="Principal('Informes')">Informes </a></li>
+                <li *ngIf="this.encargado"><a   (click)="Principal('SmartTable')">Smart </a></li>
+                <li *ngIf="this.encargado"><a   (click)="Principal('ListadoUsuarios')">Empleados y Vehiculos </a></li>
+                <li *ngIf="this.encargado"><a   (click)="Principal('Encuestas')">Encuestas </a></li>
+                <!--li ><a  (click)="Principal('AltaMascota')">Alta Mascota</a></li>
+                <li *ngIf="this.clienteLogueado"><a  (click)="Principal('AltaTurno')">Alta Turnos</a></li>
+                <li><a  (click)="Principal('VerTurnos')">Ver Turnos</a></li>
+                <li *ngIf="!this.clienteLogueado"><a  (click)="Principal('SmartTable')">Smart Table</a></li-->
+               
+              
+              </ul>  
+              <ul class="nav navbar-nav navbar-right">
+                  <!--li><a href="#"><span class="glyphicon glyphicon-user"></span> Mis Datos</a></li-->
+                  <li><a href="/"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+                </ul>
+        </div>
+      </div>
+    </nav>
+      
+   
