@@ -48,7 +48,7 @@
       </tr>
     </thead>
     <tbody *ngFor="let algo of Remiseros">
-      <tr >
+        <tr *ngIf='algo.estado=="HABILITADO"' >
           <td>{{algo.nombre}} </td>
         <td>{{algo.mail}} </td>
         <td>{{algo.clave}} </td> 
@@ -83,7 +83,7 @@
           </tr>
         </thead>
         <tbody *ngFor="let algo of vehiculos">
-          <tr >
+            <tr *ngIf='algo.estado=="HABILITADO"' >
               <td>{{algo.modelo}} </td>
             <td>{{algo.anio}} </td>
             <td>{{algo.color}} </td> 

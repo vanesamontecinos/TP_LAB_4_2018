@@ -104,12 +104,22 @@ this.servicioViajes.Borrar(this.unViaje.id)
       console.log(this.unViaje.remisero);
       console.log(this.unViaje.vehiculo);
       console.log(this.unViaje);
-      this.servicioViajes.Modificar(formData)
-      .then();
       
-      this.listarServicios();
-      this.mostrarTabla=true;
-      this.mostrarForm=false;
+
+      this.servicioViajes.Modificar(formData)
+      .then(datos => {
+        console.log('entra'+datos);
+        this.listarServicios();
+        this.mostrarTabla=true;
+        this.mostrarForm=false;
+        //this.random = Math.random();
+      })
+      .catch(error => {
+        console.log(error);
+      });
+      
+     
+      
     
     }
   }

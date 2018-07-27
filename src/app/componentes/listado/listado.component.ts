@@ -256,10 +256,18 @@ public seleccion:any;
     this.mostrarRuta=false;
     this.unViaje=algo;
     this.id=algo.id;
+    
     this.servicio.Borrar(algo.id)
-    .then();
-    this.listarServicios();
-    this.IngresarCancelado();
+    .then(datos => {
+      console.log('borro'+datos);
+      this.IngresarCancelado();
+      //this.random = Math.random();
+    })
+    .catch(error => {
+      console.log(error);
+    });
+    //this.listarServicios();
+   
   }
   IngresarCancelado(){
     var formData = new FormData();
@@ -284,13 +292,14 @@ public seleccion:any;
  
     this.servicio.Modificar(formData)
     .then(datos => {
-      console.log('nanan'+datos)
+      console.log('nanan'+datos);
+      this.listarServicios();
       //this.random = Math.random();
     })
     .catch(error => {
       console.log(error);
     });
-    this.listarServicios();
+    
   }
     
   guardar(){
@@ -317,8 +326,8 @@ if(this.form.valid){
   formData.append('origenLongitud', this.unViaje.origenLongitud);
   formData.append('destinoLongitud', this.unViaje.destinoLongitud);
   formData.append('cliente', this.usuarioLogueado.data.email );
-  formData.append('remisero', '0');
-  formData.append('vehiculo', '0');
+  formData.append('remisero', 'SIN ASIGNAR');
+  formData.append('vehiculo', 'SIN ASIGNAR');
   formData.append('monto', '0');
   formData.append('estado', 'SOLICITADO');
   formData.append('encuesta', 'NO');
